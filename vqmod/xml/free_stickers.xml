@@ -1,0 +1,361 @@
+﻿<modification>
+    <id>Free stickers</id>
+    <version>1.1</version>
+    <vqmver>2.1.6</vqmver>
+    <author>RGB</author>
+	<file name="catalog/view/theme/*/template/common/header.tpl">
+		<operation>
+			<search position="after">
+      <![CDATA[
+        <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/stylesheet.css" />
+      ]]>
+			</search>
+			<add>
+			<![CDATA[
+        <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/free_stickers.css" />
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница самого товара -->
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox" rel="colorbox"><?php if ($upc) { ?> <img src="catalog/view/theme/default/image/sticker_<?php echo $upc; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
+			]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				$this->data['model'] = $product_info['model'];
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				$this->data['upc'] = $product_info['upc'];
+			]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special' 	 => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'         => $result['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница товаров из категории -->
+	<file name="catalog/view/theme/*/template/product/category.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/category.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special'     => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'         => $result['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница сравнения -->
+	<file name="catalog/view/theme/*/template/product/compare.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" />
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<?php if ($products[$product['product_id']]['upc']) { ?><i style="background: url('catalog/view/theme/default/image/sticker_<?php echo $products[$product['product_id']]['upc']; ?>.png');"></i><?php } ?><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" />
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/compare.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special'      => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'        => $product_info['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница вишлиста -->
+	<file name="catalog/view/theme/*/template/account/wishlist.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" />
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<?php if ($product['upc']) { ?><i style="background: url('catalog/view/theme/default/image/cat-<?php echo $product['upc']; ?>.png');"></i><?php } ?><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" />
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/account/wishlist.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special'    => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'        => $product_info['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница товаров производителя -->
+	<file name="catalog/view/theme/*/template/product/manufacturer_info.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/manufacturer.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special'     => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'      => $result['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница товаров из поиска -->
+	<file name="catalog/view/theme/*/template/product/search.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/search.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special'     => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'      => $result['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Страница акционных товаров -->
+	<file name="catalog/view/theme/*/template/product/special.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/special.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special'     => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'      => $result['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+<!-- Модуль Рекомендуемые -->
+	<file name="catalog/view/theme/*/template/module/featured.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/featured.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special' 	 => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'      => $product_info['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/module/latest.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/latest.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special' 	 => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'      => $result['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+		<file name="catalog/view/theme/*/template/module/product_viewed.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<div class="image"><a href="<?php echo $product['href']; ?>"><?php if ($product['upc']) { ?><img src="catalog/view/theme/default/image/sticker_<?php echo $product['upc']; ?>.png" id="sticker" /><?php } ?><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+			]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/product_viewed.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+				'special' 	 => $special,
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				'upc'      => $product_info['upc'],
+			]]>
+			</add>
+		</operation>
+	</file>
+
+<!-- Модуль FilterPro -->
+	<file name="catalog/view/theme/*/template/module/filterpro.tpl">
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<img src="${thumb}" title="${name}" alt="${name}"/>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				{{if upc}}<i style="
+background: url('catalog/view/theme/default/image/sticker_${upc}.png');"></i>{{/if}}<img src="${thumb}" title="${name}" alt="${name}"/>
+			]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace">
+			<![CDATA[
+				<span style="color:#38b0e3"><?php echo $pds_upc; ?></span> ${upc} <br/>
+			]]>
+			</search>
+			<add>
+			<![CDATA[
+				<!--<span style="color:#38b0e3"><?php echo $pds_upc; ?></span> ${upc} <br/>-->
+			]]>
+			</add>
+		</operation>
+	</file>
+</modification>

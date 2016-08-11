@@ -1,0 +1,16 @@
+.image i, .compare-info i {
+    width: 99px;
+    height: 41px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.product-info .left .image i {
+    width: 99px;
+    height: 41px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}

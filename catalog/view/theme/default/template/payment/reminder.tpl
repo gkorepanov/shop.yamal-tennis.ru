@@ -1,0 +1,19 @@
+<?php if ($show_description) { ?>
+<div><?php echo $description ?></div>
+<?php } ?>
+<div class="buttons">
+  <div class="right">
+    <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="button" />
+  </div>
+</div>
+<script type="text/javascript"><!--
+$('#button-confirm').bind('click', function() {
+	$.ajax({ 
+		type: 'get',
+		url: 'index.php?route=payment/reminder/confirm',
+		success: function() {
+			location = '<?php echo $continue; ?>';
+		}		
+	});
+});
+//--></script> 

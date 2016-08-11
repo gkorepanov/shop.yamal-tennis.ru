@@ -1,0 +1,15 @@
+---------- Date: 2013-08-23 16:12:00 ~ IP : 10.3.70.182 ----------
+REQUEST URI : /index.php?route=checkout/simplecheckout
+MOD DETAILS:
+   modFile   : /home/y-tennis/shop.yamal-tennis.ru/docs/vqmod/xml/vqmod_reminder.xml
+   id        : Reminder (deeman)
+   version   : 1.0.0
+   vqmver    : 2.1.7
+   author    : Deeman http://simpleopencart.com
+
+File Name    : catalog/model/checkout/order.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): foreach ($order_product_query->rows as $order_product) {
+
+----------------------------------------------------------------------
+
+

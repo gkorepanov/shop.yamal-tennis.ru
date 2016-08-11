@@ -1,0 +1,18 @@
+Options +FollowSymlinks
+
+Options -Indexes
+
+<FilesMatch "\.(tpl|ini|log)">
+ Order deny,allow
+ Deny from all
+</FilesMatch>
+
+RewriteEngine On
+
+RewriteBase /
+RewriteRule ^sitemap.xml$ index.php?route=feed/google_sitemap [L]
+RewriteRule ^googlebase.xml$ index.php?route=feed/google_base [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]

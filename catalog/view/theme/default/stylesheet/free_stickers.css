@@ -1,0 +1,18 @@
+.box-product #sticker, .product-info #sticker, .product-grid #sticker {
+    position: absolute;
+    left: 0;
+    margin-left: -14px;
+    border: none;
+}
+.box-product #sticker {
+    width: 150px !important;
+    bottom: 0 !important;
+}
+.product-grid #sticker {
+    width: 170px;
+    bottom: 4px;
+}
+.product-info #sticker{
+    width: 200px;
+    bottom: 10px;
+}
