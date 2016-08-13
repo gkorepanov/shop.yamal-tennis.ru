@@ -95,7 +95,9 @@ label {
 #header #logo {
 	position: absolute;
 	top: 3px;
+	overflow: hidden;
 	left: 1px;
+	width: 236px;
 }
 #logo img {
 	width: 259px;
@@ -306,7 +308,7 @@ label {
 #header #search input {
 	background: #FFF;
 	padding: 1px 1px 1px 33px;
-	width: 200px;
+	width: 277px;
 	height: 21px;
 	border: 1px solid #CCCCCC;
 	-webkit-border-radius: 3px 3px 3px 3px;
@@ -320,29 +322,37 @@ label {
 }
 #contacts {
 	position:absolute;
-	left: 274px;
+	left: 244px;
 	top: 4px;
 	padding: 0;
 }
-#contacts img {
-	height: 70px;
+#contacts .location {
+	height: 47px;
 	position: absolute;
-	top: 1px;
+	top: 42px;
+	left: 3.0px;
+	/* width: 40px; */
+}
+#contacts .phone {
+	width: 36px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 #address {
 	position: absolute;
-	left: 58px;
-	top: 4px;
+	left: 44px;
+	top: 48px;
 	width: 150px;
-	text-align: right;
+	text-align: left;
 }
 #phone {
 	position: absolute;
-	left: 57px;
+	left: 44px;
 	width:  200px;
-	top: 45px;
+	top: 9px;
 	/* padding: 0; */
-	font-size: 120%;
+	font-size: 110%;
 }
 #phone > div > span {
 	display: block;
@@ -385,7 +395,7 @@ label {
 	float: left;
 	display: block;
 	padding: 0px 0px 0px 7px;
-	color: #38B0E3;
+	color: #38039B;
 	text-decoration: none;
 	font-size: 100%;
 }

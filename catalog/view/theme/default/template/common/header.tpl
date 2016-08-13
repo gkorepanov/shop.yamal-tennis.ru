@@ -60,7 +60,8 @@ DD_belatedPNG.fix('#logo img');
   <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
   <?php } ?>
   <div id="contacts">
-  	<img src="/image/data/system/location.png" title="Местонахождение" />
+  	<img class="location" src="/image/data/system/location.png" title="Местонахождение" />
+  	<img class="phone" src="/image/data/system/phone.png" title="Cамовывоз" />
   	<span id="address">г. Новый Уренгой, ул. Ленина, 11</span>
   	<span id="phone">+7 937 987 65 56</span>
   </div>
